@@ -1,0 +1,30 @@
+concepts
+    URL HTTP DOM
+HTML HTTP
+
+
+front end- the stuff you see at the website
+    use-HTML CSS JavaScript
+backend - handles the frontend behind the scenes
+    use other tools
+
+html-define the bluiding blocks of our website
+css styleize the website
+JavaScript- provides functionality
+
+http mesage 
+    request from client
+    response from server
+
+Text
+Links
+images 
+lists and tables 
+container elements 
+structural elements
+
+<em></em> -> emphasis
+html only used for structure
+do not use <h#></h#> for size 
+&nbsp; for words that get split from seperate lines
+<a href=""></a> is the anchor element

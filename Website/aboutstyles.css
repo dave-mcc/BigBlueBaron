@@ -1,0 +1,19 @@
+h1{
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+img{
+    width: 500px;
+    border-radius: 50px;
+    float: left;
+    margin-right: 10px;
+
+}
+p{
+    text-align: left;
+}
+nav{
+    float: right;
+}

@@ -1,0 +1,14 @@
+h1{
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+nav{
+    word-spacing: 2px;
+    text-align: right;
+}
+img{
+    width: 500px;
+    align-items: center;
+}

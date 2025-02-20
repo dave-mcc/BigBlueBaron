@@ -1,0 +1,16 @@
+h1{
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+img{
+    width: 500px;
+    border-radius: 50px;
+    float: inline-start;
+    margin-right: 10px;
+}
+nav{
+    word-spacing: 2px;
+    text-align: right;
+}
