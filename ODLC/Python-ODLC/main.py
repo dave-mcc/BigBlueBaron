@@ -88,8 +88,9 @@ def object_detection():
                         center_position_x and center_position_y may need to be determined using np.reshape(w, h) or similar function to ensure consistency
                     '''
                     
-                    center_position_x = 384
-                    center_position_y = 220
+                    H,W = frame.shape[:2]
+                    center_position_x = int(W/2)
+                    center_position_y = int(H/2)
                     get_position_relative(center_position_x,center_position_y, x_1, y_1,current_frame)
                     new_image = cv2.line(frame,(int(center_position_x),int(center_position_y)),(x_1,y_1),(255,0,0),5)
                     cv2.imwrite(image_name, new_image)
