@@ -1,0 +1,20 @@
+#include <opencv2/opencv.hpp>
+#include <iostream>
+using namespace cv;
+using namespace std;
+
+
+int main(){
+  
+  Mat RI_one;
+  Mat RI_two;
+  Mat RI_three;
+  RI_one = imread("~/sdp/images/Cars.jpg");
+  RI_two = imread("~/sdp/image/traffic.jpg");
+  RI_three = imread("~/sdp/image/Untitled.jpeg");
+
+  resize(RI_one, 640,)
+
+  
+
+}
