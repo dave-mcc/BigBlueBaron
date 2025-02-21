@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/vboxuser/githubproject/BigBlueBaron/build",
+  "command": "/usr/bin/g++  -isystem /usr/local/include/opencv4 -isystem /usr/include/mavsdk -g -o CMakeFiles/main.dir/sdp.cpp.o -c /home/vboxuser/githubproject/BigBlueBaron/ODLC/Cpp-ODLC/sdp.cpp",
+  "file": "/home/vboxuser/githubproject/BigBlueBaron/ODLC/Cpp-ODLC/sdp.cpp",
+  "output": "CMakeFiles/main.dir/sdp.cpp.o"
+}
+]
