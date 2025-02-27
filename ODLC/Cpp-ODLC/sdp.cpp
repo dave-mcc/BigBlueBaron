@@ -32,15 +32,16 @@ using namespace cv::dnn;
 using namespace std; 
 using namespace mavsdk;
 
-//classes
-vector<string> loadclasses(string&filename){
-	vector<string>classlist;
+//-------------------------------------------------------------------
+//Utility Functions
+//--------------------------------------------------------------------
+const string classes = "../classes.txt";
+void load_classes(const string&filename, vector<string>&classlist){
 	string clss;
 	ifstream fp(filename);
 	while(getline(fp,clss)){
 		classlist.push_back(clss);
 	}
-	return classlist;
 }
 
 void print_vector(vector<string>&printvec){
@@ -48,17 +49,22 @@ void print_vector(vector<string>&printvec){
 		cout<< printvec[i] << "\n";
 	}
 }
+//-----------------------------------------------------------------------------------
+//
+//----------------------------------------------
+//video/camera object detection
+//----------------------------------------------
 const string onnxpath = "../odm/best.onnx";
 const string videopath = "../video.mp4";
 const string camera = "camera";
 void object_detection(const string& onnxpath, const string& option){
-//read onnx and check if there was an error
+	//read onnx and check if there was an error
 	Net yolo =  readNetFromONNX(onnxpath);
 	if(yolo.empty()){
 		cerr<<"Error occured when reading the ONNX file"<<endl;
 	}
-//read the option for either filepath or camera, if neither then print error
-//make videocapture object given option and print error if file was unable to be opened
+	//read the option for either filepath or camera, if neither then print error
+	//make videocapture object given option and print error if file was unable to be opened
 	VideoCapture cap;
 	if(option == videopath){
 		cap = VideoCapture(option);
@@ -81,8 +87,7 @@ void object_detection(const string& onnxpath, const string& option){
 	Mat frame;
 	const int targetWidth = 640;
 	const int targetHeight = 640;
-	//vector<string> classlist = loadclasses("../classes.txt");
-
+//vector<string> classlist = loadclasses("../classes.txt");
 //detection
 	for(;;){
 		//capture frame
@@ -111,47 +116,33 @@ void object_detection(const string& onnxpath, const string& option){
 		destroyAllWindows();
 	}
 }
-int image_detector(){
-	Net yolo = readNetFromONNX(onnxpath);
-	if(yolo.empty()){
-		cerr<<"failure to read from onnx file"<<endl;
-		return -1;
-	}
-	vector<string> classnames;
-	//classnames = loadclasses("../classes.txt");
-	const string imagepath = "../images/Untitled.jpeg";
-	Mat image = imread(imagepath);
-	Mat blob = blobFromImage(image, 1.0/255, Size(640, 640), Scalar(0,0,0), true, false);
-	yolo.setInput(blob);
-	Mat output = yolo.forward();
-	Point classIdPoint;
-	double final_prob;
-	minMaxLoc(output.reshape(1, 1), 0, &final_prob, 0, &classIdPoint);
-	
-	int label_id = classIdPoint.x;
-	
-	namedWindow("base image", WINDOW_AUTOSIZE);
-	imshow("base image", image);
-	waitKey(0);
-	destroyAllWindows();
-	return 0;
+//----------------------------------------------------------------------------------------------------------------------
+//
+//--------------------------------------------------------------------------------
+// object detection but only for the purpose of feeding the model 1 image to test
+// -------------------------------------------------------------------------------
+void image_detector(cv::dnn::DetectionModel&model, cv::Mat frame, std::vector<int>&classids, std::vector<float>&confidences, std::vector<cv::Rect>&boxes,float  conf_threshold, float nms_threshold){
+		
+	model.detect(frame, classids, confidences, boxes,conf_threshold, nms_threshold);
 }
+
+void ObjectDetectionInit(const cv::dnn::DetectionModel&model, const cv::dnn:: Net&network){
+	cv::dnn::DetectionModel Model = cv::dnn::DetectionModel(network);
+}
+//------------------------------------------------------------------------------------------------------------------
+const string impth = "../images/Untitled.jpeg";
+
 int main(int argc, char*argv[]){
-	image_detector();
-	//object_detection(onnxpath, videopath);
-	/*
-	for(;;){
-		cap >> frame;
-		if(frame.empty()){
-			break;
-		}
-		imshow("Video", frame);
-		if(waitKey(1)=='q'){
-			break;
-		}
-	}
-	cap.release();
-	destroyAllWindows();
-	*/
+	cv::Mat image = cv::imread(impth); 
+	cv::dnn::Net net = readNetFromONNX(onnxpath);
+	cv::dnn::DetectionModel yolo = cv::dnn::DetectionModel(net);
+      	//ObjectDetectionInit(yolo,net);
+	std::vector<int>classids;
+	std::vector<float>confidences;
+	std::vector<cv::Rect>boxes;
+	float conf_thresh = 80;
+	float nms_thresh = 40;
+	image_detector(yolo, image,classids, confidences,boxes, conf_thresh, nms_thresh);
+	
   return 0;
 }
