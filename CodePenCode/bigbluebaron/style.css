@@ -1,0 +1,36 @@
+body {
+  font-family: system-ui;
+  background: #0032A0;
+  color: white;
+  text-align: center;
+}
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex; /* Aligns links side by side */
+    justify-content: center; /* Centers links horizontally */
+    gap: 200px; /* Adds spacing between links */
+    padding: 20px;
+    background-color: #0032A0;
+}
+
+.nav-links h1 {
+    margin: 0; /* Removes extra spacing */
+    font-size: 2.8rem; /* Set a consistent size for all */
+    font-weight: normal; /* Ensures all are the same weight */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.8rem; /* Set the text size inside links */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: Black; /* Changes color on hover */
+}
