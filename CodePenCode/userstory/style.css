@@ -1,0 +1,8 @@
+.banner {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: white;
+  text-align: center;
+  padding: 50px;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+}
