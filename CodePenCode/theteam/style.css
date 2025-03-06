@@ -1,0 +1,36 @@
+body {
+  font-family: system-ui;
+  background: #0032A0;
+  color: white;
+  text-align: center;
+}
+img {
+  width: 1200px;  /* Adjust width */
+  height: auto;  /* Keep aspect ratio */
+  border-radius: 10px;  /* Rounded corners */
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.grid-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.grid-item p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
