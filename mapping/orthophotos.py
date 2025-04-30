@@ -6,9 +6,11 @@ import time
 
 
 def generateMap():
-	img_source_path = "C:\\Users\\Reece\\datasets\\dataset2\\images"
-	work_path = "C:\\Users\\Reece\\datasets\\odm_data_aukerman111"
-	result_path = "C:\\Users\\Reece\\datasets\\odm_data_aukerman111\\multiThreadedMapping"
+	img_source_path = "C:\\Users\\<your user>\\datasets\\<your full ODM dataset>\\images"
+	datasets_path = "C:\\Users\\<your user>\\datasets\\"
+	dataset_name = "<your full ODM dataset>"
+	work_path = "C:\\Users\\<your user>\\datasets\\<your dummy dataset name>"
+	result_path = "<anywhere>"
 	group_size = 50
 	processed_imgs = []
 	orthophoto_number = 0
@@ -32,7 +34,7 @@ def generateMap():
 				copied_imgs.append(img)
 
 		#Process images in work folder
-		os.system('docker run -ti --rm --memory 6GB -v C:/Users/Reece/datasets:/datasets opendronemap/odm --project-path /datasets odm_data_aukerman111 --feature-quality low --feature-type orb --fast-orthophoto --rerun-all --pc-quality low')
+		os.system('docker run -ti --rm --memory 6GB -v ' + datasets_path + ':/datasets opendronemap/odm --project-path /datasets ' + dataset_name + ' --feature-quality low --feature-type orb --fast-orthophoto --rerun-all --pc-quality low')
 		
 		#Remove images from work folder
 		for img in copied_imgs:
@@ -47,7 +49,7 @@ def generateMap():
 		print("copy " + work_path + "\\odm_orthophoto\\odm_orthophoto.original.tif " + result_path + "\\orthophoto" + str(orthophoto_number) + ".tif")
 		os.system("copy " + work_path + "\\odm_orthophoto\\odm_orthophoto.original.tif " + result_path + "\\orthophoto" + str(orthophoto_number) + ".tif")	
 		orthophoto_number = orthophoto_number + 1
-#"C:\\Users\\Reece\\datasets\\odm_data_aukerman111\\odm_orthophoto\\odm_orthophoto.original.tiff" 
+
 		
 					
 
